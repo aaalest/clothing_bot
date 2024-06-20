@@ -257,8 +257,8 @@ class Translate:
     })
 
     skirts = Descriptor({
-        "en": "Skirts",
-        "ua": "Спідниці"
+        "en": "Skirt",
+        "ua": "Спідниця"
     })
 
     casual = Descriptor({

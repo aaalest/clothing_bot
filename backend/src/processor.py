@@ -27,7 +27,7 @@ else:
 class ProcessData(BaseModel):
     upper: Literal['jacket', 't-shirt', 'shirt', 'sweater', 'hoodie', 'coat', 'dress']
     upper_color: Literal['auto', 'black', 'white', 'red', 'green', 'blue', 'yellow', 'purple', 'orange', 'pink', 'brown', 'gray']
-    lower: Literal['jeans', 'trousers', 'shorts', 'skirts']
+    lower: Literal['jeans', 'trousers', 'shorts', 'skirt']
     lower_color: Literal['auto', 'black', 'white', 'red', 'green', 'blue', 'yellow', 'purple', 'orange', 'pink', 'brown', 'gray']
     style: Literal['auto', 'casual', 'sport', 'formal', 'party']
 

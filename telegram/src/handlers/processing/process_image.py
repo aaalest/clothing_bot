@@ -21,7 +21,7 @@ process_image_router = Router()
 class ProcessData(BaseModel):
     upper: Literal['jacket', 't-shirt', 'shirt', 'sweater', 'hoodie', 'coat', 'dress']
     upper_color: Literal['auto', 'black', 'white', 'red', 'green', 'blue', 'yellow', 'purple', 'orange', 'pink', 'brown', 'gray']
-    lower: Literal['jeans', 'trousers', 'shorts', 'skirts']
+    lower: Literal['jeans', 'trousers', 'shorts', 'skirt']
     lower_color: Literal['auto', 'black', 'white', 'red', 'green', 'blue', 'yellow', 'purple', 'orange', 'pink', 'brown', 'gray']
     style: Literal['auto', 'casual', 'sport', 'formal', 'party']
 
@@ -110,7 +110,7 @@ class GenerationSettingsButtons:
             'jeans': tr.jeans(user),
             'trousers': tr.trousers(user),
             'shorts': tr.shorts(user),
-            'skirts': tr.skirts(user)
+            'skirt': tr.skirt(user)
         }
         lower_text = lower_types.get(lower, '')
 
@@ -272,7 +272,7 @@ class LowerSelectionButtons:
         builder.button(text=tr.jeans(user), callback_data=f'{self.prefix}: jeans')
         builder.button(text=tr.trousers(user), callback_data=f'{self.prefix}: trousers')
         builder.button(text=tr.shorts(user), callback_data=f'{self.prefix}: shorts')
-        builder.button(text=tr.skirts(user), callback_data=f'{self.prefix}: skirts')
+        builder.button(text=tr.skirt(user), callback_data=f'{self.prefix}: skirt')
         builder.button(text=f'{tr.back(user)} ⬅️', callback_data=f'{self.prefix}: cancel')
         builder.adjust(2, 2, 1)
         return builder
