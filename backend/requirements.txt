@@ -1,0 +1,11 @@
+numpy
+webuiapi
+pillow
+opencv-python
+fastapi
+pydantic
+mediapipe
+ultralytics
+uvicorn
+dill
+python-multipart

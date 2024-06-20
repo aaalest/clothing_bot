@@ -1,0 +1,8 @@
+.venv/
+.idea/
+venv/
+__pycache__/
+data/
+*.pyc
+*.pt
+test*.py
