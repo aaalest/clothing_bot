@@ -239,7 +239,7 @@ This project is a distributed Telegram bot system that allows users to chage clo
 The system is architected as a distributed network of specialized services to handle high-compute AI tasks:
 1.  **[Telegram Bot](./telegram)**: The user interface, built with `aiogram`. It manages user preferences (clothing type, color, style), image uploads, and handles a generation queue.
 2.  **[Backend Server](./backend)**: A FastAPI-based service that performs the heavy lifting:
-    - **Segmentation**: Uses a custom-trained **YOLOv8x** model to generate precise skin and clothing masks .
+    - **Segmentation**: Uses a custom-trained **YOLOv8x** model to generate skin and clothing masks.
     - **Face Protection**: Employs **MediaPipe** to detect and mask out the face, ensuring the person's identity remains untouched during inpainting.
     - **Inpainting**: Communicates with the Stable Diffusion WebUI (Forge) to generate the new clothing based on user-selected prompts.
 3.  **[A1111 (Stable Diffusion)](./a1111)**: A dedicated instance of Stable Diffusion WebUI Forge optimized for inpainting using the `Realistic Vision V6.0 B1 HyperInpaint` model.
@@ -252,7 +252,7 @@ The system is architected as a distributed network of specialized services to ha
 - **Backend & API**: FastAPI, Uvicorn, Aiohttp
 - **Bot Framework**: Aiogram 3.x
 - **Database**: MongoDB (for user state and generation history)
-- **Annotation Tools**: ISAT with Segment Anything, Segment-Anything-Annotator
+- **Annotation Tools**: ISAT with Segment Anything, SAM
 
 ## Deployment
 The entire system is containerized using **Docker** to ensure consistency across different environments. Each component (Telegram Bot, Backend, and A1111) has its own  `Dockerfile`, allowing for easy scaling and deployment of multiple backends to handle increased load.
@@ -268,7 +268,7 @@ The entire system is containerized using **Docker** to ensure consistency across
 ## Lessons
 - **Model Training**: Initially, a YOLOv8l model trained on 300 images wasn't accurate enough. Upgrading to **YOLOv8x** and expanding the dataset to 600 images with stricter quality control significantly improved segmentation.
 - **Annotation Workflow**: Finding the right tools was key. `ISAT_with_segment_anything` proved to be the most efficient for high-quality segmentation labeling experience.
-- **Stable Diffusion Tuning**: Even with a "pixel-perfect" mask, inpainting settings (denoising strength, sampler, CFG scale) are critical. The `Realistic Vision HyperInpaint` model was found to provide the best balance for realistic clothing.
+- **Generative Limitations**: Stable Diffusion can produce inconsistencies even with precise masking, upgrading to a more recent model would significantly enhance output fidelity.
 - **Race Conditions**: Encountered a complex bug where concurrent users caused duplicate generation requests. This highlighted the importance of thread-safe queue management in distributed systems.
 - **Hyperparameter Defaults**: Experimenting with custom YOLOv8 training parameters often led to worse results; the default Ultralytics parameters are remarkably well-optimized for general segmentation.
 
